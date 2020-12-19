@@ -1,8 +1,16 @@
 # NYTimes-News
+
 # Environmental Setup
 •	Download Android Studio
 •	Install Android SDK
 •	Install JDK
+
+# App Development Tech Stack
+•	Development Language: Kotlin
+•	Architecture Pattern: MVVM
+•	UI Test Framework: Espresso
+•	Unit Test Framework: Junit, Mockito
+•	Static Code Analyzer: SonarQube, SonarLint
 
 # SonarLint
 •	Install SonarLint plugin in Android Studio
