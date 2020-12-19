@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="newsItem"
+            type="com.nytimes.news.data.model.Results" />
+
+        <variable
+            name="itemClickListener"
+            type="com.nytimes.news.presentation.interfaces.UIEvents" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewNews"
+        style="@style/CardView.Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size_7"
+        android:layout_marginTop="@dimen/margin_size_5"
+        android:layout_marginRight="@dimen/margin_size_7"
+        android:onClick="@{() -> itemClickListener.onItemClick(newsItem)}"
+        card_view:cardBackgroundColor="#fafafa"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFeedNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_size_5"
+                android:background="@drawable/ic_circle"
+                android:contentDescription="@string/image_description"
+                android:scaleType="fitXY"
+                app:image="@{newsItem.media}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholder="@{@drawable/ic_circle}"
+                card_view:layout_editor_absoluteX="-1dp" />
+
+            <TextView
+                android:id="@+id/tvTitleNews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_size_10"
+                android:layout_marginLeft="@dimen/margin_size_10"
+                android:layout_marginTop="@dimen/margin_size_10"
+                android:layout_marginEnd="@dimen/margin_size_30"
+                android:layout_marginRight="@dimen/margin_size_30"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text='@{newsItem.title ?? newsItem.title}'
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#808080"
+                android:textSize="@dimen/text_size_15"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/ivFeedNews"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/icRight"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_arrow_right"
+                android:contentDescription="newsImage"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toRightOf="@+id/tvTitleNews"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleNews" />
+
+            <TextView
+                android:id="@+id/tvAbstractNews"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_size_10"
+                android:layout_marginLeft="@dimen/margin_size_10"
+                android:layout_marginTop="@dimen/margin_size_10"
+                android:layout_marginEnd="@dimen/margin_size_30"
+                android:layout_marginRight="@dimen/margin_size_30"
+                android:layout_marginBottom="@dimen/margin_size_5"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="@{newsItem.abstract ?? newsItem.abstract}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="#707070"
+                android:textSize="@dimen/text_size_13"
+                app:layout_constraintLeft_toRightOf="@+id/ivFeedNews"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleNews" />
+
+            <TextView
+                android:id="@+id/tvPublishedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_size_5"
+                android:layout_marginEnd="@dimen/margin_size_30"
+                android:layout_marginRight="@dimen/margin_size_30"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/image_description"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:text="@{newsItem.publishedDate ?? newsItem.publishedDate}"
+                android:textColor="#707070"
+                android:textSize="@dimen/text_size_13"
+                app:drawableLeftCompat="@drawable/ic_calendar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAbstractNews" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
